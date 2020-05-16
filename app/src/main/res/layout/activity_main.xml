@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <TextView
         android:id="@+id/tvCriptocurrency"
-        android:layout_width="101dp"
+        android:layout_width="0dp"
         android:layout_height="28dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/criptomoeda_lbl"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,33 +22,37 @@
         android:id="@+id/spCriptocurrency"
         android:layout_width="0dp"
         android:layout_height="28dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:entries="@array/criptomoedas_name_array"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvCriptocurrency"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvFiatMoney"
-        android:layout_width="99dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/moeda_lbl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCriptocurrency" />
 
+    <TextView
+        android:id="@+id/tvFiatMoney"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/moeda_lbl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spCriptocurrency" />
+
     <Spinner
         android:id="@+id/spFiatMoney"
-        android:layout_width="292dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:entries="@array/moedas_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvFiatMoney"
-        app:layout_constraintTop_toBottomOf="@+id/spCriptocurrency" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFiatMoney" />
 
     <Button
         android:id="@+id/btRefresh"
