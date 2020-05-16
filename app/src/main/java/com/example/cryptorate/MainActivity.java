@@ -29,31 +29,32 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
     }
 
-    private void carregarValores(String base_param, String quote_param) throws IOException, JSONException {
-        Moeda moeda =  AtualizacaoValor.atualizarValor(base_param,quote_param,"");
-        TextView moedaValor = (TextView) findViewById(R.id.rate_value);
+    private void loadValues(String base_param, String quote_param) throws IOException, JSONException {
+        FiatMoney fiatMoney =  UpdateValue.updateValue(base_param,quote_param,"");
+        TextView fiatMoneyValue = (TextView) findViewById(R.id.rate_value);
 
         DecimalFormat df = new DecimalFormat(",###.##");
-        Float moedaFloat = Float.parseFloat(moeda.getRate());
+        Float fiatMoneyFloat = Float.parseFloat(fiatMoney.getRate());
 
-        String rateStr = df.format(moedaFloat);
+        String rateStr = df.format(fiatMoneyFloat);
 
-        moedaValor.setText(rateStr);
+        fiatMoneyValue.setText(rateStr);
     }
 
     //ALTERAÇÃO DE MOEDA NOME PARA MOEDA ISO CODE
-    private String getMoedaByCode(String name) {
+    private String getFiatMoneyByCode(String name) {
         int i = -1;
         for (String cc: getResources().getStringArray(R.array.moedas_name)) {
             i++;
             if (cc.equals(name))
                 break;
         }
+
         return getResources().getStringArray(R.array.moedas_iso_code_array)[i];
     }
 
     //ALTERAÇÃO DE CRIPTOMOEDA NOME PARA MOEDA ISO CODE
-    private String getCriptomoedaByCode(String name) {
+    private String getCryptocurrenciesByCode(String name) {
         int i = -1;
         for (String cc: getResources().getStringArray(R.array.criptomoedas_name_array)) {
             i++;
@@ -63,23 +64,22 @@ public class MainActivity extends AppCompatActivity {
         return getResources().getStringArray(R.array.criptomoedas_iso_code_array)[i];
     }
 
-    public void btAtualizarOnClickView(View v) {
-
+    public void btRefreshOnClickView(View v) {
         // PEGAR O VALOR SELECIONADO NO SPINNER
-        Spinner criptomoeda = (Spinner) findViewById(R.id.spCriptomoeda);
-        Spinner moeda = (Spinner) findViewById(R.id.spMoeda);
+        Spinner cryptocurrency = (Spinner) findViewById(R.id.spCriptocurrency);
+        Spinner fiatMoney = (Spinner) findViewById(R.id.spFiatMoney);
 
-        String base = (String) criptomoeda.getSelectedItem();
-        String quote = (String) moeda.getSelectedItem();
+        String base = (String) cryptocurrency.getSelectedItem();
+        String quote = (String) fiatMoney.getSelectedItem();
 
-        base = getCriptomoedaByCode(base);
-        quote = getMoedaByCode(quote);
+        base = getCryptocurrenciesByCode(base);
+        quote = getFiatMoneyByCode(quote);
 
         try {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_DENIED) {
                 ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, 1);
             } else {
-                carregarValores(base, quote);
+                loadValues(base, quote);
             }
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -93,17 +93,17 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // PEGAR O VALOR SELECIONADO NO SPINNER
-                    Spinner criptomoeda = (Spinner) findViewById(R.id.spCriptomoeda);
-                    Spinner moeda = (Spinner) findViewById(R.id.spMoeda);
+                    Spinner cryptocurrecy = (Spinner) findViewById(R.id.spCriptocurrency);
+                    Spinner fiatMoney = (Spinner) findViewById(R.id.spFiatMoney);
 
-                    String base = (String) criptomoeda.getSelectedItem();
-                    String quote = (String) moeda.getSelectedItem();
+                    String base = (String) cryptocurrecy.getSelectedItem();
+                    String quote = (String) fiatMoney.getSelectedItem();
 
-                    base = getCriptomoedaByCode(base);
-                    quote = getMoedaByCode(quote);
+                    base = getCryptocurrenciesByCode(base);
+                    quote = getFiatMoneyByCode(quote);
 
                     try {
-                        carregarValores(base, quote);
+                        loadValues(base, quote);
                     } catch (Exception e) {
                         Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }

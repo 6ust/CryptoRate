@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
     <TextView
-        android:id="@+id/tvCriptomoeda"
+        android:id="@+id/tvCriptocurrency"
         android:layout_width="101dp"
         android:layout_height="28dp"
         android:layout_marginStart="10dp"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spCriptomoeda"
+        android:id="@+id/spCriptocurrency"
         android:layout_width="0dp"
         android:layout_height="28dp"
         android:layout_marginStart="30dp"
@@ -24,44 +24,44 @@
         android:layout_marginEnd="30dp"
         android:entries="@array/criptomoedas_name_array"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvCriptomoeda"
+        app:layout_constraintStart_toEndOf="@+id/tvCriptocurrency"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvMoeda"
+        android:id="@+id/tvFiatMoney"
         android:layout_width="99dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:text="@string/moeda_lbl"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCriptomoeda" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCriptocurrency" />
 
     <Spinner
-        android:id="@+id/spMoeda"
+        android:id="@+id/spFiatMoney"
         android:layout_width="292dp"
         android:layout_height="36dp"
         android:layout_marginTop="30dp"
         android:entries="@array/moedas_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvMoeda"
-        app:layout_constraintTop_toBottomOf="@+id/spCriptomoeda" />
+        app:layout_constraintStart_toEndOf="@+id/tvFiatMoney"
+        app:layout_constraintTop_toBottomOf="@+id/spCriptocurrency" />
 
     <Button
-        android:id="@+id/btAtualizar"
+        android:id="@+id/btRefresh"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="30dp"
+        android:backgroundTint="#FCDB03"
         android:hapticFeedbackEnabled="false"
-        android:onClick="btAtualizarOnClickView"
+        android:onClick="btRefreshOnClickView"
         android:text="@string/atualizar"
         android:textColor="#813737"
-        android:backgroundTint="#FCDB03"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spMoeda" />
+        app:layout_constraintTop_toBottomOf="@+id/spFiatMoney" />
 
     <TextView
         android:id="@+id/tvRate"
@@ -71,7 +71,7 @@
         android:layout_marginTop="25dp"
         android:text="@string/rate_lbl"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAtualizar" />
+        app:layout_constraintTop_toBottomOf="@+id/btRefresh" />
 
     <TextView
         android:id="@+id/rate_value"
@@ -83,6 +83,43 @@
         android:text="@string/rate_value"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvRate"
-        app:layout_constraintTop_toBottomOf="@+id/btAtualizar" />
+        app:layout_constraintTop_toBottomOf="@+id/btRefresh" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rate_value">
+
+        <TextView
+            android:id="@+id/textCryptocurrencyName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="33"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textEspace"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="33"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="33"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
