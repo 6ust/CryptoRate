@@ -2,6 +2,10 @@ package com.example.cryptorate;
 
 //ENVIARA DADOS E RETORNARA DADOS
 
+import android.widget.Toast;
+
+import com.example.cryptorate.pojo.Rate;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,15 +48,17 @@ public class UpdateValue {
         }
     }
 
-    public static FiatMoney updateValue(String id_base, String id_quote, String rate) throws JSONException, IOException {
+    public static Rate updateValue(String id_base, String id_quote, String rate) throws JSONException, IOException {
 
         String api_key = "3a345c669b08f4c310c81bc4e03727ac8deddff84498545358013172af78a152";
 
         String response = request("https://min-api.cryptocompare.com/data/price?fsym=" + id_base + "&tsyms=" + id_quote + "&api_key=" + api_key);
         JSONObject obj = new JSONObject(response);
         String id_rate = obj.getString(id_quote);
+        System.out.println("UPDATE VLUE --------> " + id_rate);
 
-        return new FiatMoney(id_base, id_quote, id_rate);
+
+        return new Rate(id_base, id_quote, id_rate);
     }
 
     // URL TESTE

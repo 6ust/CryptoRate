@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -12,12 +14,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cryptorate.pojo.Rate;
+
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Rate> listRate;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadValues(String base_param, String quote_param) throws IOException, JSONException {
-        FiatMoney fiatMoney =  UpdateValue.updateValue(base_param,quote_param,"");
+        Rate rate =  UpdateValue.updateValue(base_param,quote_param,"");
         TextView fiatMoneyValue = (TextView) findViewById(R.id.rate_value);
 
         DecimalFormat df = new DecimalFormat(",###.##");
-        Float fiatMoneyFloat = Float.parseFloat(fiatMoney.getRate());
+        Float rateFloat = Float.parseFloat(rate.getRate());
 
-        String rateStr = df.format(fiatMoneyFloat);
+        String rateStr = df.format(rateFloat);
 
         fiatMoneyValue.setText(rateStr);
     }
@@ -44,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     //ALTERAÇÃO DE MOEDA NOME PARA MOEDA ISO CODE
     private String getFiatMoneyByCode(String name) {
         int i = -1;
-        for (String cc: getResources().getStringArray(R.array.moedas_name)) {
+        for (String cc : getResources().getStringArray(R.array.moedas_name)) {
             i++;
             if (cc.equals(name))
                 break;
@@ -56,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     //ALTERAÇÃO DE CRIPTOMOEDA NOME PARA MOEDA ISO CODE
     private String getCryptocurrenciesByCode(String name) {
         int i = -1;
-        for (String cc: getResources().getStringArray(R.array.criptomoedas_name_array)) {
+        for (String cc : getResources().getStringArray(R.array.criptomoedas_name_array)) {
             i++;
             if (cc.equals(name))
                 break;
@@ -77,13 +85,18 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_DENIED) {
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, 1);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 1);
             } else {
                 loadValues(base, quote);
             }
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void btListRatesOnClickView(View v) {
+        Intent listRates = new Intent(this, ListRates.class);
+        startActivity(listRates);
     }
 
     @Override
@@ -114,5 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 }

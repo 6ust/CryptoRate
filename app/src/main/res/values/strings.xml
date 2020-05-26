@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Crypto Rate</string>
     <string name="atualizar">Atualizar</string>
+    <string name="atualizar_lista">Atualizar Lista</string>
+    <string name="gerar_lista_rate">Gerar Lista</string>
     <string name="valor">Valor</string>
     <string name="ip">IP</string>
     <string name="criptomoeda_lbl">Criptomoeda</string>
