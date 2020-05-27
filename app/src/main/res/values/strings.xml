@@ -63,45 +63,45 @@
         <item>Emercoin</item>
         <item>EOS.IO</item>
         <item>Ethereum Classic</item>
-        <item>Ethereum</item>
-        <item>Litecoin</item>
-        <item>Monero</item>
-        <item>Nano</item>
-        <item>NEM</item>
-        <item>NEO</item>
-        <item>Niobio Cash</item>
-        <item>Nxt</item>
-        <item>Peercoin</item>
-        <item>Ripple</item>
-        <item>Stellar</item>
-        <item>Tether</item>
-        <item>Verge</item>
-        <item>Vertcoin</item>
-        <item>Zcash</item>
-    </string-array>
+    <item>Ethereum</item>
+    <item>Litecoin</item>
+    <item>Monero</item>
+    <item>Nano</item>
+    <item>NEM</item>
+    <item>NEO</item>
+    <item>Niobio Cash</item>
+    <item>Nxt</item>
+    <item>Peercoin</item>
+    <item>Ripple</item>
+    <item>Stellar</item>
+    <item>Tether</item>
+    <item>Verge</item>
+    <item>Vertcoin</item>
+    <item>Zcash</item>
+</string-array>
 
-    <string-array name="criptomoedas_iso_code_array">
-        <item>BCH</item>
-        <item>BTC</item>
-        <item>DASH</item>
-        <item>XDN</item>
-        <item>DOGE</item>
-        <item>EMC</item>
-        <item>EOS</item>
-        <item>ETC</item>
-        <item>ETH</item>
-        <item>LTC</item>
-        <item>XMR</item>
-        <item>NANO</item>
-        <item>XEM</item>
-        <item>NEO</item>
-        <item>NBR</item>
-        <item>NXT</item>
-        <item>PPC</item>
-        <item>XRP</item>
-        <item>XLM</item>
-        <item>USDT</item>
-        <item>XVG</item>
+<string-array name="criptomoedas_iso_code_array">
+<item>BCH</item>
+<item>BTC</item>
+<item>DASH</item>
+<item>XDN</item>
+<item>DOGE</item>
+<item>EMC</item>
+<item>EOS</item>
+<item>ETC</item>
+<item>ETH</item>
+<item>LTC</item>
+<item>XMR</item>
+<item>NANO</item>
+<item>XEM</item>
+<item>NEO</item>
+<item>NBR</item>
+<item>NXT</item>
+<item>PPC</item>
+<item>XRP</item>
+<item>XLM</item>
+<item>USDT</item>
+<item>XVG</item>
         <item>VTC</item>
         <item>ZEC</item>
     </string-array>
