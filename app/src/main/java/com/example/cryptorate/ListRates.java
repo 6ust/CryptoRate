@@ -44,17 +44,15 @@ public class ListRates extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
     }
 
-    public void btAtualizarListaOnClickView(View v) {
-//        Toast.makeText(this,"Funciona", Toast.LENGTH_LONG).show();
-//
-//        // PEGAR O VALOR SELECIONADO NO SPINNER
-//        Spinner fiatMoney = (Spinner) findViewById(R.id.spFiatMoneyLR);
-//
-//        String quote = (String) fiatMoney.getSelectedItem();
-//
-//        quote = getFiatMoneyByCode(quote);
-//
-//        create object of listview
+    public void btAtualizarListaOnClickView(View v) throws IOException, JSONException {
+
+        // PEGAR O VALOR SELECIONADO NO SPINNER
+        Spinner fiatMoney = (Spinner) findViewById(R.id.spFiatMoneyLR);
+
+        String quote = (String) fiatMoney.getSelectedItem();
+
+        quote = getFiatMoneyByCode(quote);
+
         ListView listView=(ListView)findViewById(R.id.listview);
 
         //create ArrayList of String
@@ -62,30 +60,23 @@ public class ListRates extends AppCompatActivity {
 
         String[] cryptocurrencyListLR = getResources().getStringArray(R.array.criptomoedas_name_array);
         String[] cryptocurrencyISOListLR = getResources().getStringArray(R.array.criptomoedas_iso_code_array);
-//
-//        final ArrayList<String> rateListLR = new ArrayList<>();
-//        String rateTemp;
-//        ViewGroup container;
+
+        String rateTemp;
 
         for (int i = 0; i < cryptocurrencyISOListLR.length; i++) {
             arrayList.add(cryptocurrencyListLR[i]);
-//            try {
-//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_DENIED) {
-//                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 1);
-//
-//                    rateTemp = loadValues(cryptocurrencyISOListLR[i], quote);
-//                    //rateListLR.addAll(Arrays.asList(cryptocurrencyListLR[i], rateTemp));
-//                    rateListLR.add("TSTS");
-//                } else {
-//                }
-//            } catch (Exception e) {
-//                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-//            }
+            try {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_DENIED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 1);
+
+                    rateTemp = loadValues(cryptocurrencyISOListLR[i], quote);
+                    arrayList.add(rateTemp);
+                } else {
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }
-//
-//        for (int i = 0; i < rateListLR.size(); i+=2) {
-//            System.out.println("CHEGUEI -------- RATE TEMP --> " + rateListLR.get(i) + " -- " + rateListLR.get(i+1));
-//        }
 
         //Create Adapter
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
