@@ -5,10 +5,13 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -42,53 +45,66 @@ public class ListRates extends AppCompatActivity {
     }
 
     public void btAtualizarListaOnClickView(View v) {
-        Toast.makeText(this,"Funciona", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this,"Funciona", Toast.LENGTH_LONG).show();
+//
+//        // PEGAR O VALOR SELECIONADO NO SPINNER
+//        Spinner fiatMoney = (Spinner) findViewById(R.id.spFiatMoneyLR);
+//
+//        String quote = (String) fiatMoney.getSelectedItem();
+//
+//        quote = getFiatMoneyByCode(quote);
+//
+//        create object of listview
+        ListView listView=(ListView)findViewById(R.id.listview);
 
-        // PEGAR O VALOR SELECIONADO NO SPINNER
-        Spinner fiatMoney = (Spinner) findViewById(R.id.spFiatMoneyLR);
-
-        String quote = (String) fiatMoney.getSelectedItem();
-
-        quote = getFiatMoneyByCode(quote);
-
+        //create ArrayList of String
+        final ArrayList<String> arrayList=new ArrayList<>();
 
         String[] cryptocurrencyListLR = getResources().getStringArray(R.array.criptomoedas_name_array);
         String[] cryptocurrencyISOListLR = getResources().getStringArray(R.array.criptomoedas_iso_code_array);
+//
+//        final ArrayList<String> rateListLR = new ArrayList<>();
+//        String rateTemp;
+//        ViewGroup container;
 
-        List<String> rateListLR = new ArrayList<>();
-        String rateTemp;
-
-        System.out.println("CHEGUEI -------- FOR");
         for (int i = 0; i < cryptocurrencyISOListLR.length; i++) {
-            try {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 1);
-
-                    rateTemp = loadValues(cryptocurrencyISOListLR[i], quote);
-                    rateListLR.addAll(Arrays.asList(cryptocurrencyListLR[i], rateTemp));
-                } else {
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            arrayList.add(cryptocurrencyListLR[i]);
+//            try {
+//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_DENIED) {
+//                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 1);
+//
+//                    rateTemp = loadValues(cryptocurrencyISOListLR[i], quote);
+//                    //rateListLR.addAll(Arrays.asList(cryptocurrencyListLR[i], rateTemp));
+//                    rateListLR.add("TSTS");
+//                } else {
+//                }
+//            } catch (Exception e) {
+//                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//            }
         }
+//
+//        for (int i = 0; i < rateListLR.size(); i+=2) {
+//            System.out.println("CHEGUEI -------- RATE TEMP --> " + rateListLR.get(i) + " -- " + rateListLR.get(i+1));
+//        }
 
-        for (int i = 0; i < rateListLR.size(); i+=2) {
-            System.out.println("CHEGUEI -------- RATE TEMP --> " + rateListLR.get(i) + " -- " + rateListLR.get(i+1));
-        }
+        //Create Adapter
+        ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
 
-        System.out.println("CHEGUEI -------- RATE LST --> " + rateListLR);
+        //assign adapter to listview
+        listView.setAdapter(arrayAdapter);
+        //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //            @Override
+        //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        //                Toast.makeText(MainActivity.this,"clicked item:"+i+" "+arrayList.get(i).toString(),Toast.LENGTH_SHORT).show();
+        //            }
+        //        });
+        //add listener to listview
 
-//        MONTAGEM DO ListAdapter - ERRO ARRAYLST NULL
-        ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.list_rates, (ArrayList<String>) rateListLR);
-        listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
+
     }
 
     private String loadValues(String base_param, String quote_param) throws IOException, JSONException {
         Rate rate = UpdateValue.updateValue(base_param, quote_param, "");
-//        TextView cryptocurrentyName = (TextView) findViewById(R.id.textCryptocurrencyLR);
-//        TextView rateValue = (TextView) findViewById(R.id.textValueLR);
 
         DecimalFormat df = new DecimalFormat(",###.##");
         Float rateFloat = Float.parseFloat(rate.getRate());

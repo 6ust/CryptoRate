@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1069618723493",
+    "firebase_url": "https://cryptorate-3343d.firebaseio.com",
+    "project_id": "cryptorate-3343d",
+    "storage_bucket": "cryptorate-3343d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069618723493:android:1230791aaed8ccd987eb4c",
+        "android_client_info": {
+          "package_name": "com.example.cryptorate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069618723493-i21eaau5ltlf62tq986hpi8uf3sdu55d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cryptorate",
+            "certificate_hash": "4d22be4a48b2f2565ac11b9cbbfe718918d80f3c"
+          }
+        },
+        {
+          "client_id": "1069618723493-cmtns5egtp4b3qcp134qqgaksuf2lkv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwhnJ-gopL5XRxjRJOUfId5WGyLlqa8Ok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069618723493-cmtns5egtp4b3qcp134qqgaksuf2lkv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

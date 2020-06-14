@@ -11,7 +11,7 @@ import com.example.cryptorate.pojo.Rate;
 
 import java.util.ArrayList;
 
-public class ThreeColumn_ListAdapter extends ArrayAdapter<Rate> {
+public class ThreeColumn_ListAdapter extends ArrayAdapter<String> {
 
     private LayoutInflater mInflater;
     private ArrayList<String> fiatMoney;
@@ -25,25 +25,21 @@ public class ThreeColumn_ListAdapter extends ArrayAdapter<Rate> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = mInflater.inflate(R.layout.viewcontents_layout, parent, false);
 
-        String rate = fiatMoney.get(position);
+        View listItemView = convertView;
 
-        if (rate != null) {
-            TextView firstName = (TextView) convertView.findViewById(R.id.textCryptocurrencyName);
-            TextView lastName = (TextView) convertView.findViewById(R.id.textEspaceLR);
-            TextView favFood = (TextView) convertView.findViewById(R.id.textValueLR);
-            if (firstName != null) {
-                firstName.setText("RRRTTT");
-            }
-            if (lastName != null) {
-                lastName.setText("");
-            }
-            if (favFood != null) {
-                favFood.setText("RRRTTT");
-            }
+        if(listItemView == null)
+        {
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_rates, parent, false);
+
         }
 
-        return convertView;
+        View textContainer = listItemView.findViewById(R.id.text);;
+
+//        TextView firstName = listItemView.findViewById(R.id.textCryptocurrencyLR);
+        for (int pos = 0; pos < fiatMoney.size(); pos += 2 ) {
+//            firstName.setText(fiatMoney.get(pos));
+        }
+        return listItemView;
     }
 }

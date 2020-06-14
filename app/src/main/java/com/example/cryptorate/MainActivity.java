@@ -1,5 +1,6 @@
 package com.example.cryptorate;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -9,12 +10,18 @@ import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cryptorate.pojo.Rate;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
@@ -23,6 +30,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private DatabaseReference firebaseReferencia = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference usuarioReferencia = firebaseReferencia.child("usuarios").child("001");
 
     ArrayList<Rate> listRate;
     SQLiteDatabase db;
@@ -35,6 +44,26 @@ public class MainActivity extends AppCompatActivity {
         //permite conexão com a Internet na Thread principal
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        Usuario usuario = new Usuario();
+
+        usuario.setNome("Mark");
+        usuario.setSobrenome("Minho");
+        usuario.setIdade(34);
+
+        usuarioReferencia.child("001").setValue(usuario);
+
+        usuarioReferencia.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.i("FIREBASE SELECT", dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void loadValues(String base_param, String quote_param) throws IOException, JSONException {
