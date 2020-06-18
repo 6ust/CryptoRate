@@ -58,7 +58,6 @@
         <item>Bitcoin Cash</item>
         <item>Bitcoin</item>
         <item>Dash</item>
-        <item>DigitalNote</item>
         <item>Dogecoin</item>
         <item>Emercoin</item>
         <item>EOS.IO</item>
@@ -69,7 +68,6 @@
     <item>Nano</item>
     <item>NEM</item>
     <item>NEO</item>
-    <item>Niobio Cash</item>
     <item>Nxt</item>
     <item>Peercoin</item>
     <item>Ripple</item>
@@ -84,7 +82,6 @@
 <item>BCH</item>
 <item>BTC</item>
 <item>DASH</item>
-<item>XDN</item>
 <item>DOGE</item>
 <item>EMC</item>
 <item>EOS</item>
@@ -95,7 +92,6 @@
 <item>NANO</item>
 <item>XEM</item>
 <item>NEO</item>
-<item>NBR</item>
 <item>NXT</item>
 <item>PPC</item>
 <item>XRP</item>
